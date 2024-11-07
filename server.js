@@ -37,7 +37,7 @@ app.post('/proxy', async (req, res) => {
         // Step 2: Forward the received data (e.g., create new member)
         const createMemberUrl = 'https://103.211.209.114:18006/bluize/adapter/loyalty/api/client';
         const memberData = JSON.stringify(receivedData);
-
+console.log(memberData)
         const memberConfig = {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,  // Use the access token
@@ -48,10 +48,12 @@ app.post('/proxy', async (req, res) => {
         };
 
         const memberResponse = await axios.post(createMemberUrl, memberData, memberConfig);
+        console.log(memberResponse.data)
         res.status(200).json(memberResponse.data);  // Forward response from the API
 
     } catch (error) {
         console.error('Error occurred:', error.message);
+        console.log(error.message)
         res.status(500).json({ error: 'An error occurred while processing the request.' });
     }
 });
