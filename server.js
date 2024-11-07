@@ -17,7 +17,7 @@ const agent = new https.Agent({
 // Function to validate incoming data
 const validateData = (data) => {
     // Define the required fields
-    const requiredFields = ['name', 'email', 'phone'];  // Example required fields
+    const requiredFields = ['GivenNames', 'Email', 'Mobile'];  // Example required fields
 
     // Check if all required fields are present
     for (let field of requiredFields) {
