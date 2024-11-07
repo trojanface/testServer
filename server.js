@@ -40,7 +40,7 @@ const validateData = (data) => {
 app.post('/proxy', async (req, res) => {
     try {
         const receivedData = req.body.data;  // Data sent from the client
-
+console.log(receivedData)
         // Step 1: Validate the received data
         const validation = validateData(receivedData);
         if (!validation.valid) {
@@ -77,10 +77,12 @@ app.post('/proxy', async (req, res) => {
 
         const memberResponse = await axios.post(createMemberUrl, memberData, memberConfig);
         res.status(200).json(memberResponse.data);  // Forward response from the API
+        console.log(memberResponse.data)
 
     } catch (error) {
         console.error('Error occurred:', error.message);
         res.status(500).json({ error: 'An error occurred while processing the request.' });
+        console.log(error.message)
     }
 });
 
