@@ -46,7 +46,7 @@ console.log(receivedData)
         if (!validation.valid) {
             return res.status(400).json({ error: validation.message });  // Bad Request
         }
-
+console.log("Passed validation")
         // Step 2: Get the access token
         const tokenUrl = 'https://103.211.209.114:18006/bluize/adapter/loyalty/api/token';
         const tokenData = `grant_type=password&username=${process.env.USERNAME}&password=${process.env.PASSWORD}&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}`;
@@ -60,12 +60,13 @@ console.log(receivedData)
         };
 
         const tokenResponse = await axios.post(tokenUrl, tokenData, tokenConfig);
+        console.log(tokenResponse.data.access_token)
         const accessToken = tokenResponse.data.access_token;
 
         // Step 3: Forward the received data (e.g., create new member)
         const createMemberUrl = 'https://103.211.209.114:18006/bluize/adapter/loyalty/api/client';
         const memberData = JSON.stringify(receivedData);
-
+        console.log(memberData)
         const memberConfig = {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,  // Use the access token
