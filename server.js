@@ -65,7 +65,7 @@ console.log("Passed validation")
 
         // Step 3: Forward the received data (e.g., create new member)
         const createMemberUrl = 'https://103.211.209.114:18006/bluize/adapter/loyalty/api/client';
-        const memberData = JSON.stringify(receivedData);
+        const memberData = `${JSON.stringify(receivedData)}`;
         console.log(memberData)
         const memberConfig = {
             headers: {
